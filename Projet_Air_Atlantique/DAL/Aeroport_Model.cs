@@ -48,39 +48,17 @@ namespace Projet_Air_Atlantique.DAL
                 return aero;
             }
         }
-
-        public static List<Vol> GetVols()
-        {
-
-            BddSQL db = new BddSQL();
-            db.InitConnexion();
-            MySqlCommand cmd = db.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * from vols";
-            db.connexion.Open();
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-            List<Vol> vols = new List<Vol>();
-
-            while (dr.Read())
-            {
-                vols.Add(new Vol(dr.GetInt32("idvol")));
-            }
-
-            return vols;
-        }
+        
 
         static public MySqlDataReader GetInfos(string Id)
         {
-            BddSQL db = new BddSQL();
-
-            MySqlCommand cmd = db.connexion.CreateCommand();
+            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
             cmd.CommandText = "SELECT * FROM aeroports WHERE idaeroport = @idaeroport";
             cmd.Parameters.Add("@idaeroport", MySqlDbType.String).Value = Id;
-            db.connexion.Open();
+            BddSQL.connexion.Open();
 
             return cmd.ExecuteReader();
-
-
+            
         }
 
 

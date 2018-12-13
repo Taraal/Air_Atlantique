@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using System.ComponentModel;
 
-
-namespace Projet_Air_Atlantique
+namespace Projet_Air_Atlantique.Controllers
 {
-    class Vol
+    class Vol_Controller : INotifyPropertyChanged
     {
         private int Id { get; set; }
         private Avion Avion { get; set; }
@@ -68,8 +67,10 @@ namespace Projet_Air_Atlantique
             set { Header = value; }
         }
 
-        public Vol(int Id, Avion avion, Aeroport ADepart,
-            Aeroport AArivee, string Date,
+        public Vol_Controller() { }
+
+        public Vol_Controller(int Id, Avion avion, Aeroport ADepart, 
+            Aeroport AArrivee, string Date, 
             string HeureDepart, string HeureArrivee)
         {
 
@@ -80,7 +81,9 @@ namespace Projet_Air_Atlantique
             this.Date = Date;
             this.HeureDepart = HeureDepart;
             this.HeureArrivee = HeureArrivee;
-
+            this.Header = Header;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

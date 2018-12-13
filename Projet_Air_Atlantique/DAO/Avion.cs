@@ -14,13 +14,12 @@ namespace Projet_Air_Atlantique
 
         public Avion(int Id)
         {
-            MySqlDataReader dr = DAL.Avion_Model.GetInfos(Id);
+            Dictionary<string, int> dr = DAL.Avion_Model.GetInfos(Id);
 
-            while (dr.Read())
-            {
-                this.Id = dr.GetInt32("idavion");
-                this.Modele = new Modele(dr.GetInt32("modele"));
-            }
+            this.Id = dr["idavion"];
+            this.Modele = new Modele(dr["idmodele"]);
+            
+            BddSQL.connexion.Close();
         }
     }
 }

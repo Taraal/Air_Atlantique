@@ -24,10 +24,7 @@ namespace Projet_Air_Atlantique
                 this.Nom= dr.GetString("nom");
                 
             }
-
-
-
-
+            BddSQL.connexion.Close();
         }
 
 

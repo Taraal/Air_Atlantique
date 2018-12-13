@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using System.ComponentModel;
 
-
-namespace Projet_Air_Atlantique
+namespace Projet_Air_Atlantique.Controllers
 {
-    class Modele
+    class Modele_Controller : INotifyPropertyChanged
     {
 
         private int Id { get; set; }
         private string Label { get; set; }
+
+        public int IdProperty
+        {
+            get { return Id; }
+        }
 
         public string LabelProperty
         {
@@ -20,21 +24,22 @@ namespace Projet_Air_Atlantique
             set { Label = value; }
         }
 
-        public Modele() { }
+        public Modele_Controller() { }
 
-        public Modele(int Id, string Label)
+        public Modele_Controller(int Id, string Label)
         {
             this.Id = Id;
             this.Label = Label;
+
         }
 
-        public Modele(int Id)
+        public Modele_Controller(int Id)
         {
             this.Id = Id;
+            this.Label = "default";
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
     }
-
-    
 }

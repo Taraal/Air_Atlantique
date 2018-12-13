@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\Modele_Controller.cs" />
+    <Compile Include="Controllers\Vol_Controller.cs" />
     <Compile Include="DAL\Aeroport_Model.cs" />
     <Compile Include="DAL\Avion_Model.cs" />
     <Compile Include="DAL\Modele_Model.cs" />
@@ -74,6 +76,10 @@
     <Compile Include="DAL\BddSQL.cs" />
     <Compile Include="DAL\Env.cs" />
     <Compile Include="DAO\Vol.cs" />
+    <Page Include="Windows\DetailVol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +89,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DAO\Avion.cs" />
+    <Compile Include="Windows\DetailVol.xaml.cs">
+      <DependentUpon>DetailVol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Medias\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

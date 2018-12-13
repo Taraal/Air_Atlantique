@@ -47,19 +47,26 @@ namespace Projet_Air_Atlantique.DAL
         }
 
 
-        static public MySqlDataReader GetInfos(int Id)
+        static public Dictionary<string, int> GetInfos(int Id)
         {
-            BddSQL db = new BddSQL();
-
-            MySqlCommand cmd = db.connexion.CreateCommand();
+            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
             cmd.CommandText = "SELECT * FROM avions WHERE idavion = @idavion";
             cmd.Parameters.Add("@idavion", MySqlDbType.Int32).Value = Id;
-            db.connexion.Open();
+            if(BddSQL.connexion.State == System.Data.ConnectionState.Closed)
+            {
+                BddSQL.connexion.Open();
+            }
+            
 
-            return cmd.ExecuteReader();
+            MySqlDataReader dr = cmd.ExecuteReader();
 
-
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            while (dr.Read())
+            {
+                dict["idavion"] = Id;
+                dict["idmodele"] = dr.GetInt32("modele");
+            }
+            return dict;
         }
-
     }
 }

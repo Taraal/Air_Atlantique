@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="284">
+        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Expander Header="{Binding Header}">
-
-                        <DataGrid ItemsSource="{Binding vol}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Avion"  Binding="{Binding Avion}"/>
-                                <DataGridTextColumn Header="Aéroport Départ" Binding="{Binding ADepart}" />
-
-                                <DataGridTextColumn Header="Aéroport Arrivée" Binding="{Binding Aarrivee}" />
-                                <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                    <Expander Header="{Binding HeaderProperty}">
+                        <Canvas>
+                            
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image Margin="10" Width="300" Source="/Medias/triangle-32.png"/>
+                                </BulletDecorator.Bullet>
+                            </BulletDecorator>
+                 
                         
+                            <Button Margin="10" Name="Details" Content="Ouvrir les détails" Tag="{Binding idVol}" Click="DetailsClick" Width="100" />
+                        </Canvas>
                     </Expander>
                 </DataTemplate>
             </ListBox.ItemTemplate>

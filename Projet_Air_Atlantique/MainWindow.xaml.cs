@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Projet_Air_Atlantique.DAL;
+using Projet_Air_Atlantique.Controllers;
+
+
 
 namespace Projet_Air_Atlantique
 {
@@ -22,20 +26,25 @@ namespace Projet_Air_Atlantique
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        Vol_Controller control_vol = new Vol_Controller();
 
         public MainWindow()
         {
             InitializeComponent();
-            List<Vol> vols = DAL.Aeroport_Model.GetVols();
+            List<Vol_Controller> vols = new List<Vol_Controller>();
+            Vol_Model.GetVols(vols);
     
-            foreach(Vol vol in vols)
-            {
-                Console.WriteLine(vol.Header);
-            }
+            
             //Console.WriteLine(vols);
+            //DataTable flights = ConvertToDataTable(vols);
+
             Flights.ItemsSource = vols;
-            aaaa
+        }
+
+        private void DetailsClick(object sender, RoutedEventArgs e)
+        {
+            Windows.DetailVol p = new Windows.DetailVol();
+            p.Show();
         }
 
     }
