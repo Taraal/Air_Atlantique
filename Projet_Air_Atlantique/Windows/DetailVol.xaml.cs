@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projet_Air_Atlantique.Controllers;
+using Projet_Air_Atlantique.DAL;
+
 
 namespace Projet_Air_Atlantique.Windows
 {
@@ -19,10 +22,21 @@ namespace Projet_Air_Atlantique.Windows
     /// </summary>
     public partial class DetailVol : Window
     {
-        public DetailVol()
+        public DetailVol(int Id)
         {
             InitializeComponent();
 
+            Dictionary<string, string> dicString = Vol_Model.GetInfosString(Id);
+            Dictionary<string, int> dicInt = Vol_Model.GetInfosInt(Id);
+
+            //Vol_Controller vol = new Vol_Controller(dicInt["idvol"], Avion_Model.CheckExistsThenAdd(dicInt["idavion"]), 
+            //    Aeroport_Model.CheckExistsThenAdd(dicString["adepart"].ToString()), 
+            //    Aeroport_Model.CheckExistsThenAdd(dicString["aarrivee"].ToString()), 
+            //    dicString["date"].ToString(), 
+            //    dicString["heuredepart"].ToString(), 
+            //    dicString["heurearrivee"].ToString());
+            // Console.WriteLine(dicString["adepart"]);
+            this.Title = Id.ToString() ;
 
         }
     }

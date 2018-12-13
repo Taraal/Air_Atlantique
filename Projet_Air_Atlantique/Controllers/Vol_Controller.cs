@@ -18,6 +18,12 @@ namespace Projet_Air_Atlantique.Controllers
         private string HeureDepart { get; set; }
         private string Header { get; set; }
 
+        public int IdProperty
+        {
+            get { return Id; }
+        }
+
+
         public Avion AvionProperty
         {
             get

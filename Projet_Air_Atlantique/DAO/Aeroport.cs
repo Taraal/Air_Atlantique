@@ -9,22 +9,30 @@ namespace Projet_Air_Atlantique
 {
     class Aeroport
     {
-        public string Id { get; set; }
-        public string Nom { get; set; }
-        public string Label { get; set; }
-        
+        private string Id { get; set; }
+        private string Nom { get; set; }
+        private string Label { get; set; }
 
-        public Aeroport(string Id)
+        public string NomProperty
         {
-            MySqlDataReader dr = DAL.Aeroport_Model.GetInfos(Id);
+            get { return Nom; }
+            set { Nom = value; }
+        }
 
-            while (dr.Read())
-            {
-                this.Id = dr.GetString("idaeroport");
-                this.Nom= dr.GetString("nom");
-                
-            }
-            BddSQL.connexion.Close();
+        public string LabelProperty
+        {
+            get { return Label; }
+            set { Label = value; }
+        }
+
+        public Aeroport() { }
+
+        public Aeroport(string Id, string Nom, string Label)
+        {
+            this.Id = Id;
+            this.Nom = Nom;
+            this.Label = Label;
+        }
         }
 
 
