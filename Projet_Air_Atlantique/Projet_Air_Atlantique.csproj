@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\Aeroport_Controller.cs" />
+    <Compile Include="Controllers\Avion_Controller.cs" />
     <Compile Include="Controllers\Modele_Controller.cs" />
     <Compile Include="Controllers\Vol_Controller.cs" />
     <Compile Include="DAL\Aeroport_Model.cs" />

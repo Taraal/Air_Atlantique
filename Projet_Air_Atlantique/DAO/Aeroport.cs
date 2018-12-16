@@ -11,7 +11,6 @@ namespace Projet_Air_Atlantique
     {
         private string Id { get; set; }
         private string Nom { get; set; }
-        private string Label { get; set; }
 
         public string NomProperty
         {
@@ -19,26 +18,16 @@ namespace Projet_Air_Atlantique
             set { Nom = value; }
         }
 
-        public string LabelProperty
-        {
-            get { return Label; }
-            set { Label = value; }
-        }
-
         public Aeroport() { }
 
-        public Aeroport(string Id, string Nom, string Label)
-        {
-            this.Id = Id;
-            this.Nom = Nom;
-            this.Label = Label;
-        }
+            public Aeroport(string Id, string Nom)
+            {
+                this.Id = Id;
+                this.Nom = Nom;
+            }
         }
 
 
 
     }
 
-    
-
-}

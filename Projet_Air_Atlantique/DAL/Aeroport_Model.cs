@@ -5,36 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Projet_Air_Atlantique.Controllers;
 
 
 namespace Projet_Air_Atlantique.DAL
 {
-    class Aeroport_Model
+    class Aeroport_Model 
     {
 
-        public static List<Aeroport> ExistingAeroports = new List<Aeroport>()
+        public static List<Aeroport_Controller> ExistingAeroports = new List<Aeroport_Controller>()
         {
 
         };
 
-        public static List<Aeroport> GetExistingAeroports()
+        public static List<Aeroport_Controller> GetExistingAeroports()
         {
 
             return ExistingAeroports;
         }
 
-        public static Aeroport CheckExistsThenAdd(string IdAeroport)
+        public static Aeroport_Controller CheckExistsThenAdd(string IdAeroport)
         {
             if (ExistingAeroports != null)
             {
-                bool exists = ExistingAeroports.Any(a => a.Id == IdAeroport);
+                bool exists = ExistingAeroports.Any(a => a.IdProperty == IdAeroport);
                 if (exists)
                 {
-                    return ExistingAeroports.Find(a => a.Id == IdAeroport);
+                    return ExistingAeroports.Find(a => a.IdProperty == IdAeroport);
                 }
                 else
                 {
-                    Aeroport aero = new Aeroport(IdAeroport);
+                    Aeroport_Controller aero = new Aeroport_Controller(IdAeroport);
                     ExistingAeroports.Add(aero);
 
                     return aero;
@@ -42,7 +43,7 @@ namespace Projet_Air_Atlantique.DAL
             }
             else
             {
-                Aeroport aero = new Aeroport(IdAeroport);
+                Aeroport_Controller aero = new Aeroport_Controller(IdAeroport);
                 ExistingAeroports.Add(aero);
 
                 return aero;

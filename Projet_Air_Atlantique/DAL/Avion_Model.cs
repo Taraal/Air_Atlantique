@@ -20,14 +20,14 @@ namespace Projet_Air_Atlantique.DAL
             return ExistingAvions;
         }
 
-        public static Avion CheckExistsThenAdd(int IdAvion)
+        public static Avion_Controller CheckExistsThenAdd(int IdAvion)
         {
             if (ExistingAvions != null)
             {
-                bool exists = ExistingAvions.Any(a => a.Id == IdAvion);
+                bool exists = ExistingAvions.Any(a => a.IdProperty == IdAvion);
                 if (exists)
                 {
-                    return ExistingAvions.Find(a => a.Id == IdAvion);
+                    return ExistingAvions.Find(a => a.IdProperty == IdAvion);
                 }
                 else
                 {
