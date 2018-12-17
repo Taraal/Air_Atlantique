@@ -13,7 +13,7 @@ namespace Projet_Air_Atlantique.DAL
     {
         static public string GetHeader(Vol_Controller vol)
         {
-            string header = vol.ADepartProperty.Id + " - " + vol.AArriveeProperty.Id + "  " + vol.DateProperty;
+            string header = vol.ADepartProperty.IdProperty + " - " + vol.AArriveeProperty.IdProperty + "  " + vol.DateProperty;
 
             return header;
         }

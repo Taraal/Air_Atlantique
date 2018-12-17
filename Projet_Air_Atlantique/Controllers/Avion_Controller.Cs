@@ -29,7 +29,11 @@ namespace Projet_Air_Atlantique.Controllers
         {
             this.Id = Id;
             this.Modele = modele;
+        }
 
+        public Avion_Controller(int Id)
+        {
+            this.Id = Id;
         }
     }
 }

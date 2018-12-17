@@ -31,20 +31,23 @@ namespace Projet_Air_Atlantique
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = "AIR ATLANTIQUE";
+            DataContext = this;
+            Title = "AIR ATLANTIQUE";
             List<Vol_Controller> vols = new List<Vol_Controller>();
             Vol_Model.GetVols(vols);
 
             Flights.ItemsSource = vols;
-            
+
+            //MessageBox.Show(vols[0].DateProperty);
         }
 
         private void DetailsClick(object sender, RoutedEventArgs e)
         {
             Button but = sender as Button;
 
+             
      
-            Windows.DetailVol p = new Windows.DetailVol(1);
+            Windows.DetailVol p = new Windows.DetailVol(Convert.ToInt32(((Button)sender).Tag));
 
             p.Show();
         }

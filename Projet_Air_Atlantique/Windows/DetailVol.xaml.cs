@@ -29,13 +29,13 @@ namespace Projet_Air_Atlantique.Windows
             Dictionary<string, string> dicString = Vol_Model.GetInfosString(Id);
             Dictionary<string, int> dicInt = Vol_Model.GetInfosInt(Id);
 
-            //Vol_Controller vol = new Vol_Controller(dicInt["idvol"], Avion_Model.CheckExistsThenAdd(dicInt["idavion"]), 
-            //    Aeroport_Model.CheckExistsThenAdd(dicString["adepart"].ToString()), 
-            //    Aeroport_Model.CheckExistsThenAdd(dicString["aarrivee"].ToString()), 
-            //    dicString["date"].ToString(), 
-            //    dicString["heuredepart"].ToString(), 
-            //    dicString["heurearrivee"].ToString());
-            // Console.WriteLine(dicString["adepart"]);
+            Vol_Controller vol = new Vol_Controller(dicInt["idvol"], Avion_Model.CheckExistsThenAdd(dicInt["idavion"]),
+                Aeroport_Model.CheckExistsThenAdd(dicString["adepart"].ToString()),
+                Aeroport_Model.CheckExistsThenAdd(dicString["aarrivee"].ToString()),
+                dicString["date"].ToString(),
+                dicString["heuredepart"].ToString(),
+                dicString["heurearrivee"].ToString());
+            Console.WriteLine(dicString["adepart"]);
             this.Title = Id.ToString() ;
 
         }

@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Projet_Air_Atlantique.Controllers;
 
 namespace Projet_Air_Atlantique.DAL
 {
     class Avion_Model
     {
-        public static List<Avion> ExistingAvions = new List<Avion>()
+        public static List<Avion_Controller> ExistingAvions = new List<Avion_Controller>()
         {
 
         };
 
-        public static List<Avion> GetExistingAvions()
+        public static List<Avion_Controller> GetExistingAvions()
         {
 
             return ExistingAvions;
@@ -31,7 +32,7 @@ namespace Projet_Air_Atlantique.DAL
                 }
                 else
                 {
-                    Avion avion = new Avion(IdAvion);
+                    Avion_Controller avion = new Avion_Controller(IdAvion);
                     ExistingAvions.Add(avion);
 
                     return avion;
@@ -39,7 +40,7 @@ namespace Projet_Air_Atlantique.DAL
             }
             else
             {
-                Avion avion = new Avion(IdAvion);
+                Avion_Controller avion = new Avion_Controller(IdAvion);
                 ExistingAvions.Add(avion);
 
                 return avion;

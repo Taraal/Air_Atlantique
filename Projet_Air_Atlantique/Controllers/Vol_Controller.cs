@@ -10,9 +10,9 @@ namespace Projet_Air_Atlantique.Controllers
     class Vol_Controller : INotifyPropertyChanged
     {
         private int Id { get; set; }
-        private Avion Avion { get; set; }
-        private Aeroport ADepart { get; set; }
-        private Aeroport AArrivee { get; set; }
+        private Avion_Controller Avion { get; set; }
+        private Aeroport_Controller ADepart { get; set; }
+        private Aeroport_Controller AArrivee { get; set; }
         private string Date { get; set; }
         private string HeureArrivee { get; set; }
         private string HeureDepart { get; set; }
@@ -24,7 +24,7 @@ namespace Projet_Air_Atlantique.Controllers
         }
 
 
-        public Avion AvionProperty
+        public Avion_Controller AvionProperty
         {
             get
             {
@@ -36,13 +36,13 @@ namespace Projet_Air_Atlantique.Controllers
             }
         }
 
-        public Aeroport ADepartProperty
+        public Aeroport_Controller ADepartProperty
         {
             get { return ADepart; }
             set { ADepart = value; }
         }
 
-        public Aeroport AArriveeProperty
+        public Aeroport_Controller AArriveeProperty
         {
             get { return AArrivee; }
             set { AArrivee = value; }
@@ -75,8 +75,8 @@ namespace Projet_Air_Atlantique.Controllers
 
         public Vol_Controller() { }
 
-        public Vol_Controller(int Id, Avion avion, Aeroport ADepart, 
-            Aeroport AArrivee, string Date, 
+        public Vol_Controller(int Id, Avion_Controller avion, Aeroport_Controller ADepart, 
+            Aeroport_Controller AArrivee, string Date, 
             string HeureDepart, string HeureArrivee)
         {
 

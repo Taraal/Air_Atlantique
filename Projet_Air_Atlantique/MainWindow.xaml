@@ -10,23 +10,16 @@
         <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Expander Name="Expand" Header="{Binding HeaderProperty}">
-                        <Canvas Name="Dropdown">
-                            
-                            <BulletDecorator>
-                                <BulletDecorator.Bullet>
-                                    <Image Margin="10" Width="300" Source="/Medias/triangle-32.png"/>
-                                </BulletDecorator.Bullet>
-                            </BulletDecorator>
+                    <Expander x:Name="Expand" Header="{Binding HeaderProperty}">
+                        <Canvas x:Name="Dropdown">
 
-                            <TextBlock Text="{Binding dateProperty}"></TextBlock>
-                            <!--<Button Margin="10" Name="Details" Content="Ouvrir les détails" Tag="{Binding idProperty}" Click="DetailsClick" Width="100" />-->
+                            <TextBlock Text="{Binding DateProperty}"></TextBlock>
+                            <Button Margin="10" x:Name="Details" Content="Ouvrir les détails" Tag="{Binding IdProperty}" Click="DetailsClick" Width="100" />
+
                         </Canvas>
                     </Expander>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
-
         </ListBox>
     </Grid>
 </Window>
