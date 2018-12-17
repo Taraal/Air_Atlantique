@@ -17,8 +17,7 @@ namespace Projet_Air_Atlantique.DAL
 
         public static void GetExistingModeles()
         {
-
-
+            
             //MySqlDataReader dr = cmd.ExecuteReader();
             using (MySqlConnection c = BddSQL.InitConnexion())
             {
@@ -35,6 +34,20 @@ namespace Projet_Air_Atlantique.DAL
             
         }
 
+        public static void AddToDb(Modele_Controller modele)
+        {
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "INSERT INTO modeles (idmodele, label) VALUES (@idmodele, @label)";
+                command.Parameters.AddWithValue("@idmodele", modele.IdProperty);
+                command.Parameters.AddWithValue("@label", modele.LabelProperty);
+
+                command.ExecuteNonQuery();
+
+            }
+        }
+
         public static Modele_Controller CheckExistsThenAdd(int IdModele)
         {
             GetExistingModeles();
@@ -49,7 +62,7 @@ namespace Projet_Air_Atlantique.DAL
                 {
                     Modele_Controller model = new Modele_Controller(IdModele);
                     ExistingModeles.Add(model);
-
+                    AddToDb(model);
                     return model;
                 }
             }
@@ -57,7 +70,7 @@ namespace Projet_Air_Atlantique.DAL
             {
                 Modele_Controller model = new Modele_Controller(IdModele);
                 ExistingModeles.Add(model);
-
+                AddToDb(model);
                 return model;
             }
         }

@@ -8,7 +8,7 @@
         Title="DetailVol" Height="450" Width="800">
     <Grid Margin="0,0,3.333,-19.333">
 
-        <TextBlock Name="ADepart" HorizontalAlignment="Left" Margin="126,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="TextBlock"/></TextBlock>
+        <TextBlock Name="ADepart" HorizontalAlignment="Left" Margin="126,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="lololo"/></TextBlock>
         <TextBlock Name="AArrivee" HorizontalAlignment="Left" Margin="126,119,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock Name="HeureDepart" HorizontalAlignment="Left" Margin="126,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="TextBlock"/></TextBlock>
         <TextBlock Name="HeureArrivee" HorizontalAlignment="Left" Margin="126,301,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>

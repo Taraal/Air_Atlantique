@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Expander x:Name="Expand" Header="{Binding HeaderProperty}">
@@ -21,5 +25,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <TextBox Name="Label" Text="Coucou" Grid.ColumnSpan="2" Margin="0,0,-0.667,-0.333"/>
+        <Button Grid.ColumnSpan="2" Content="Button" Click="AddNewLabel" HorizontalAlignment="Left" Margin="708,135,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

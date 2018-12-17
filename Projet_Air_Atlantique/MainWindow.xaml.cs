@@ -52,6 +52,13 @@ namespace Projet_Air_Atlantique
             p.Show();
         }
 
+        private void AddNewLabel(object sender, RoutedEventArgs e)
+        {
+            Modele_Controller model = new Modele_Controller(Label.Text);
+            Modele_Model.AddToDb(model);
+
+        }
+
     }
     
 
