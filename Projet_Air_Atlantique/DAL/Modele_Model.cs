@@ -15,14 +15,29 @@ namespace Projet_Air_Atlantique.DAL
 
         };
 
-        public static List<Modele_Controller> GetExistingModeles()
+        public static void GetExistingModeles()
         {
 
-            return ExistingModeles;
+
+            //MySqlDataReader dr = cmd.ExecuteReader();
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM modeles";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ExistingModeles.Add(new Modele_Controller(dr.GetInt32("idmodele"), dr.GetString("label")));
+                    }
+                }
+            }
+            
         }
 
         public static Modele_Controller CheckExistsThenAdd(int IdModele)
         {
+            GetExistingModeles();
             if (ExistingModeles != null)
             {
                 bool exists = ExistingModeles.Any(a => a.IdProperty == IdModele);
@@ -48,21 +63,21 @@ namespace Projet_Air_Atlantique.DAL
         }
 
 
-        static public MySqlDataReader GetInfos(int Id)
-        {
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM modeles WHERE idmodele = @idmodele";
-            cmd.Parameters.Add("@idmodele", MySqlDbType.Int32).Value = Id;
-            if(BddSQL.connexion.State == System.Data.ConnectionState.Closed)
-            {
-                BddSQL.connexion.Open();
-            }
+        //static public MySqlDataReader GetInfos(int Id)
+        //{
+        //    MySqlCommand cmd = BddSQL.connexion.CreateCommand();
+        //    cmd.CommandText = "SELECT * FROM modeles WHERE idmodele = @idmodele";
+        //    cmd.Parameters.Add("@idmodele", MySqlDbType.Int32).Value = Id;
+        //    if(BddSQL.connexion.State == System.Data.ConnectionState.Closed)
+        //    {
+        //        BddSQL.connexion.Open();
+        //    }
 
 
-            return cmd.ExecuteReader();
+        //    return cmd.ExecuteReader();
 
 
-        }
+        //}
 
     }
 }

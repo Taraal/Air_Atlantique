@@ -9,7 +9,7 @@ namespace Projet_Air_Atlantique.Controllers
     class Avion_Controller
     {
         private int Id { get; set; }
-        private Modele Modele { get; set; }
+        private Modele_Controller Modele { get; set; }
 
 
         public int IdProperty
@@ -17,7 +17,7 @@ namespace Projet_Air_Atlantique.Controllers
             get { return Id; ; }
         }
 
-        public Modele ModeleProperty
+        public Modele_Controller ModeleProperty
         {
             get { return Modele; }
             set { Modele = value; }
@@ -25,7 +25,7 @@ namespace Projet_Air_Atlantique.Controllers
 
         public Avion_Controller() { }
 
-        public Avion_Controller(int Id, Modele modele)
+        public Avion_Controller(int Id, Modele_Controller modele)
         {
             this.Id = Id;
             this.Modele = modele;

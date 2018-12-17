@@ -18,18 +18,22 @@ namespace Projet_Air_Atlantique.DAL
 
         public static void GetExistingAeroports()
         {
-            BddSQL.connexion.Close();
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM aeroports";
-            BddSQL.connexion.Open();
 
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            using (MySqlConnection c = BddSQL.InitConnexion())
             {
-                ExistingAeroports.Add(new Aeroport_Controller(dr.GetString("idaeroport"), dr.GetString("nom")));
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM aeroports";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+
+                    while (dr.Read())
+                    {
+                        ExistingAeroports.Add(new Aeroport_Controller(dr.GetString("idaeroport"), dr.GetString("nom")));
+                    }
+                }
             }
-            BddSQL.connexion.Close();
+
+
         }
 
         public static Aeroport_Controller CheckExistsThenAdd(string IdAeroport)
@@ -60,16 +64,16 @@ namespace Projet_Air_Atlantique.DAL
         }
         
 
-        static public MySqlDataReader GetInfos(string Id)
-        {
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM aeroports WHERE idaeroport = @idaeroport";
-            cmd.Parameters.Add("@idaeroport", MySqlDbType.String).Value = Id;
-            BddSQL.connexion.Open();
+        //static public MySqlDataReader GetInfos(string Id)
+        //{
+        //    MySqlCommand cmd = BddSQL.connexion.CreateCommand();
+        //    cmd.CommandText = "SELECT * FROM aeroports WHERE idaeroport = @idaeroport";
+        //    cmd.Parameters.Add("@idaeroport", MySqlDbType.String).Value = Id;
+        //    BddSQL.connexion.Open();
 
-            return cmd.ExecuteReader();
+        //    return cmd.ExecuteReader();
             
-        }
+        //}
 
 
 

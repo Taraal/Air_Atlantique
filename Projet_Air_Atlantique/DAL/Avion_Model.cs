@@ -15,14 +15,28 @@ namespace Projet_Air_Atlantique.DAL
 
         };
 
-        public static List<Avion_Controller> GetExistingAvions()
+        public static void GetExistingAvions()
         {
 
-            return ExistingAvions;
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM avions";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ExistingAvions.Add(new Avion_Controller(dr.GetInt32("idavion"), Modele_Model.CheckExistsThenAdd(dr.GetInt32("modele"))));
+                    }
+                    dr.Close();
+                }
+            }
+            
         }
 
         public static Avion_Controller CheckExistsThenAdd(int IdAvion)
         {
+            GetExistingAvions();
             if (ExistingAvions != null)
             {
                 bool exists = ExistingAvions.Any(a => a.IdProperty == IdAvion);
@@ -50,23 +64,21 @@ namespace Projet_Air_Atlantique.DAL
 
         static public Dictionary<string, int> GetInfos(int Id)
         {
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM avions WHERE idavion = @idavion";
-            cmd.Parameters.Add("@idavion", MySqlDbType.Int32).Value = Id;
-            if(BddSQL.connexion.State == System.Data.ConnectionState.Closed)
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            using (MySqlConnection c = BddSQL.InitConnexion())
             {
-                BddSQL.connexion.Open();
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM avions WHERE idavion = @idavion";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        dict["idavion"] = Id;
+                        dict["idmodele"] = dr.GetInt32("modele");
+                    }
+                }
             }
             
-
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-            Dictionary<string, int> dict = new Dictionary<string, int>();
-            while (dr.Read())
-            {
-                dict["idavion"] = Id;
-                dict["idmodele"] = dr.GetInt32("modele");
-            }
             return dict;
         }
     }

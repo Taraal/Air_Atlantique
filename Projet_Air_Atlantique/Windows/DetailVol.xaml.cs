@@ -39,7 +39,13 @@ namespace Projet_Air_Atlantique.Windows
             this.Title = Id.ToString() ;
 
             ADepart.Text = vol.ADepartProperty.NomProperty;
-            
+            AArrivee.Text = vol.AArriveeProperty.NomProperty;
+            HeureArrivee.Text = vol.HeureArriveeProperty;
+            HeureDepart.Text = vol.HeureDepartProperty;
+            Date.Text = vol.DateProperty;
+            Avion.Text = vol.AvionProperty.ModeleProperty.LabelProperty;
+            VolNum.Text = vol.IdProperty.ToString();
+
             this.DataContext = this;
 
         }

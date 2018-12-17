@@ -10,20 +10,26 @@ namespace Projet_Air_Atlantique
 {
     class BddSQL
     {
-        public static MySqlConnection connexion;
+        //public MySqlConnection connexion;
 
-        public static void InitConnexion()
+        public static MySqlConnection InitConnexion()
         {
-            string connectionString = "SERVER=" + Env.server + "; DATABASE=" + Env.database +"; UID=" + Env.uid + "; PASSWORD=" + Env.password;
+            MySqlConnection connexion = null;
+            MySqlConnectionStringBuilder cstring = new MySqlConnectionStringBuilder
+            {
+                Server = Env.server,
+                Database = Env.database,
+                UserID = Env.uid,
+                Password = Env.password,
+                Pooling = true
+            };
+            string connectionString = "SERVER=" + Env.server + "; DATABASE=" + Env.database +"; UID=" + Env.uid + "; PASSWORD=" + Env.password + "; MultipleActiveResultSets=true";
             if (connexion == null)
             {
-                connexion = new MySqlConnection(connectionString);
+                connexion = new MySqlConnection(cstring.ToString());
             }
-        }
-
-        public static void Closeconnection()
-        {
-            connexion.Close();
+            connexion.Open();
+            return connexion;
         }
     }
 }
