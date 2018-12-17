@@ -13,19 +13,28 @@ namespace Projet_Air_Atlantique.DAL
     class Aeroport_Model 
     {
 
-        public static List<Aeroport_Controller> ExistingAeroports = new List<Aeroport_Controller>()
+        public static List<Aeroport_Controller> ExistingAeroports = new List<Aeroport_Controller>() { };
+
+
+        public static void GetExistingAeroports()
         {
+            BddSQL.connexion.Close();
+            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
+            cmd.CommandText = "SELECT * FROM aeroports";
+            BddSQL.connexion.Open();
 
-        };
+            MySqlDataReader dr = cmd.ExecuteReader();
 
-        public static List<Aeroport_Controller> GetExistingAeroports()
-        {
-
-            return ExistingAeroports;
+            while (dr.Read())
+            {
+                ExistingAeroports.Add(new Aeroport_Controller(dr.GetString("idaeroport"), dr.GetString("nom")));
+            }
+            BddSQL.connexion.Close();
         }
 
         public static Aeroport_Controller CheckExistsThenAdd(string IdAeroport)
         {
+            GetExistingAeroports();
             if (ExistingAeroports != null)
             {
                 bool exists = ExistingAeroports.Any(a => a.IdProperty == IdAeroport);

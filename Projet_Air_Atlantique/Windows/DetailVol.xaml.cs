@@ -30,13 +30,17 @@ namespace Projet_Air_Atlantique.Windows
             Dictionary<string, int> dicInt = Vol_Model.GetInfosInt(Id);
 
             Vol_Controller vol = new Vol_Controller(dicInt["idvol"], Avion_Model.CheckExistsThenAdd(dicInt["idavion"]),
-                Aeroport_Model.CheckExistsThenAdd(dicString["adepart"].ToString()),
-                Aeroport_Model.CheckExistsThenAdd(dicString["aarrivee"].ToString()),
+                Aeroport_Model.CheckExistsThenAdd(dicString["adepart"]),
+                Aeroport_Model.CheckExistsThenAdd(dicString["aarrivee"]),
                 dicString["date"].ToString(),
                 dicString["heuredepart"].ToString(),
                 dicString["heurearrivee"].ToString());
             Console.WriteLine(dicString["adepart"]);
             this.Title = Id.ToString() ;
+
+            ADepart.Text = vol.ADepartProperty.NomProperty;
+            
+            this.DataContext = this;
 
         }
     }
