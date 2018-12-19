@@ -18,13 +18,16 @@ namespace Projet_Air_Atlantique.DAL
             return header;
         }
 
-        public static void AddNewVol(Avion_Controller IdAvion, Aeroport_Controller IdAD, Aeroport_Controller IdAA, string Date, string HD, string HA)
+        public static void AddNewVol(Avion_Controller Avion, Aeroport_Controller AD, Aeroport_Controller AA, string Date, string HD, string HA)
         {
+            int IdAvion = Avion.IdProperty;
+            string IdAD = AD.IdProperty;
+            string IdAA = AA.IdProperty;
             using (MySqlConnection c = BddSQL.InitConnexion())
             {
                 MySqlCommand command = c.CreateCommand();
-                command.CommandText = "INSERT INTO vols (idvol, avion, adepart, aarrivee, heurdepart, heurearrivee, date) " +
-                    "VALUES (NULL, @idAvion, @IdAD, @IdAA, @Date, @HD, @HA)";
+                command.CommandText = "INSERT INTO vols (idvol, avion, adepart, aarrivee, heuredepart, heurearrivee, date) " +
+                    "VALUES (NULL, @idAvion, @IdAD, @IdAA, @HD, @HA, @Date)";
                 command.Parameters.AddWithValue("@idAvion", IdAvion);
                 command.Parameters.AddWithValue("@IdAD", IdAD);
                 command.Parameters.AddWithValue("@IdAA", IdAA);

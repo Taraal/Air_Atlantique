@@ -23,7 +23,7 @@
         <ComboBox Name="AArrivee" IsEditable="True" IsReadOnly="True" Text="Aeroport d'arrivee" Margin="460,128,112.333,254.667">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Name="Lala" Text="{Binding NomProperty}" />
+                    <ComboBoxItem Content="{Binding NomProperty}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

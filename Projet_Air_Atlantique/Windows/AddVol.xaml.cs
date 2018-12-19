@@ -33,11 +33,19 @@ namespace Projet_Air_Atlantique.Windows
             if (System.Windows.Forms.MessageBox.Show("Confirmer l'enregistrement de ce vol ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                     {
-                //int a = Avion.SelectedItem.IdProperty;
-                //string b = ADepart.SelectedItem.ToString();
-                //string c = AArrivee.SelectedItem.ToString();
-                string a = ADepart.Text;
-                //Vol_Model.AddNewVol(Avion.SelectedItem, ADepart.SelectedItem.ToString(), AArrivee.SelectedItem.ToString(), Date.ToString(), HDepart.ToString(), HArrivee.ToString());
+
+                Aeroport_Controller AD = Aeroport_Model.ExistingAeroports[ADepart.SelectedIndex];
+                Aeroport_Controller AA = Aeroport_Model.ExistingAeroports[AArrivee.SelectedIndex];
+                Avion_Controller avion = Avion_Model.ExistingAvions[Avion.SelectedIndex];
+                DateTime? HD = HDepart.Value;
+                DateTime? HA = HArrivee.Value;
+                string HDString = HD.Value.Hour.ToString() + ":" + HD.Value.Minute.ToString() + ":" + HD.Value.Second.ToString();
+                string HAString = HA.Value.Hour.ToString() + ":" + HA.Value.Minute.ToString() + ":" + HA.Value.Second.ToString();
+                string DString = Date.SelectedDate.Value.Year.ToString() + "-" + Date.SelectedDate.Value.Month.ToString() + "-" + Date.SelectedDate.Value.Day.ToString();
+
+                Vol_Model.AddNewVol(avion, AD, AA, DString, HDString, HAString);
+                System.Windows.MessageBox.Show("Vol ajouté !");
+                this.Close();
                     }
 
         }
