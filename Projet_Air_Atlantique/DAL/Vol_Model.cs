@@ -11,6 +11,8 @@ namespace Projet_Air_Atlantique.DAL
 {
     class Vol_Model
     {
+        public static List<Vol_Controller> ExistingVols = new List<Vol_Controller>() { };
+
         static public string GetHeader(Vol_Controller vol)
         {
             string header = vol.ADepartProperty.IdProperty + " - " + vol.AArriveeProperty.IdProperty + "  " + vol.DateProperty;
@@ -39,8 +41,20 @@ namespace Projet_Air_Atlantique.DAL
             }
         }
 
+        public static void DeleteVol(int IdVol)
+        {
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "DELETE FROM vols WHERE idvol = @idvol";
+                command.Parameters.AddWithValue("@idvol", IdVol);
 
-        public static void GetVols(List<Vol_Controller> list)
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        public static void GetExistingVols()
         {
 
             using (MySqlConnection c = BddSQL.InitConnexion())
@@ -55,7 +69,7 @@ namespace Projet_Air_Atlantique.DAL
                     {
                         Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
                         v.HeaderProperty = GetHeader(v);
-                        list.Add(v);
+                        ExistingVols.Add(v);
                     }
                 }
             }

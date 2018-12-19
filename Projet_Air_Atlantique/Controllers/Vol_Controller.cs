@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Projet_Air_Atlantique.DAL;
 
 namespace Projet_Air_Atlantique.Controllers
 {
@@ -73,6 +74,7 @@ namespace Projet_Air_Atlantique.Controllers
             set { Header = value; }
         }
 
+
         public Vol_Controller() { }
 
         public Vol_Controller(int Id, Avion_Controller avion, Aeroport_Controller ADepart, 
@@ -89,6 +91,14 @@ namespace Projet_Air_Atlantique.Controllers
             this.HeureArrivee = HeureArrivee;
             this.Header = Header;
         }
+
+        public static void DeleteVol(int IdVol)
+        {
+            Vol_Model.ExistingVols.RemoveAll(v => v.IdProperty == IdVol);
+            Vol_Model.DeleteVol(IdVol);
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

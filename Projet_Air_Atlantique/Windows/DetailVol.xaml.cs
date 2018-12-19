@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms; 
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -48,6 +49,17 @@ namespace Projet_Air_Atlantique.Windows
 
             this.DataContext = this;
 
+        }
+
+        private void DeleteVol(object sender, RoutedEventArgs e)
+        {
+            if (System.Windows.Forms.MessageBox.Show("Confirmer la suppression de ce vol ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                Vol_Controller.DeleteVol(Convert.ToInt32(this.Title));
+
+                System.Windows.MessageBox.Show("Vol supprimé avec succès");
+            }
         }
     }
 }

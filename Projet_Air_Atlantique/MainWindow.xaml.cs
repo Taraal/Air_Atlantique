@@ -33,12 +33,13 @@ namespace Projet_Air_Atlantique
             InitializeComponent();
             Aeroport_Model.GetExistingAeroports();
             Avion_Model.GetExistingAvions();
+            Vol_Model.GetExistingVols();
             DataContext = this;
             Title = "AIR ATLANTIQUE";
-            List<Vol_Controller> vols = new List<Vol_Controller>();
-            Vol_Model.GetVols(vols);
+            
+            
 
-            Flights.ItemsSource = vols;
+            Flights.ItemsSource = Vol_Model.ExistingVols;
 
             //MessageBox.Show(vols[0].DateProperty);
         }

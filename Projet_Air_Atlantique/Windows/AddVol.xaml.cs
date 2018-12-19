@@ -27,8 +27,6 @@ namespace Projet_Air_Atlantique.Windows
 
         private void AddNewVol(object sender, RoutedEventArgs e)
         {
-            //DialogResult dr = System.Windows.Forms.MessageBox.Show("Message.", "Title", MessageBoxButtons.YesNoCancel,
-            //    MessageBoxIcon.Information);
 
             if (System.Windows.Forms.MessageBox.Show("Confirmer l'enregistrement de ce vol ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
@@ -42,10 +40,11 @@ namespace Projet_Air_Atlantique.Windows
                 string HDString = HD.Value.Hour.ToString() + ":" + HD.Value.Minute.ToString() + ":" + HD.Value.Second.ToString();
                 string HAString = HA.Value.Hour.ToString() + ":" + HA.Value.Minute.ToString() + ":" + HA.Value.Second.ToString();
                 string DString = Date.SelectedDate.Value.Year.ToString() + "-" + Date.SelectedDate.Value.Month.ToString() + "-" + Date.SelectedDate.Value.Day.ToString();
-
+                
                 Vol_Model.AddNewVol(avion, AD, AA, DString, HDString, HAString);
                 System.Windows.MessageBox.Show("Vol ajouté !");
                 this.Close();
+
                     }
 
         }
