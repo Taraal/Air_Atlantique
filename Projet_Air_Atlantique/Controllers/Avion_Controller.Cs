@@ -10,11 +10,25 @@ namespace Projet_Air_Atlantique.Controllers
     {
         private int Id { get; set; }
         private Modele_Controller Modele { get; set; }
+        private bool Maintenance { get; set; }
+        private bool EnVol { get; set; }
 
 
         public int IdProperty
         {
             get { return Id; ; }
+        }
+
+        public bool MaintenanceProperty
+        {
+            get { return Maintenance; }
+            set { Maintenance = value; }
+        }
+
+        public bool EnVolProperty
+        {
+            get { return EnVol; }
+            set { EnVol = value; }
         }
 
         public Modele_Controller ModeleProperty
@@ -25,15 +39,19 @@ namespace Projet_Air_Atlantique.Controllers
 
         public Avion_Controller() { }
 
-        public Avion_Controller(int Id, Modele_Controller modele)
+        public Avion_Controller(int Id, Modele_Controller modele, bool maintenance, bool envol)
         {
             this.Id = Id;
             this.Modele = modele;
+            Maintenance = maintenance;
+            EnVol = envol;
         }
 
         public Avion_Controller(int Id)
         {
             this.Id = Id;
+            Maintenance = false;
+            EnVol = false;
         }
     }
 }

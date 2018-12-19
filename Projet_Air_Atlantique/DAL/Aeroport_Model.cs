@@ -38,7 +38,6 @@ namespace Projet_Air_Atlantique.DAL
 
         public static Aeroport_Controller CheckExistsThenAdd(string IdAeroport)
         {
-            GetExistingAeroports();
             if (ExistingAeroports != null)
             {
                 bool exists = ExistingAeroports.Any(a => a.IdProperty == IdAeroport);

@@ -17,7 +17,6 @@ namespace Projet_Air_Atlantique.Controllers
             get { return Id; }
         }
 
-
         public string NomProperty
         {
             get { return Nom; }

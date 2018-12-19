@@ -31,6 +31,8 @@ namespace Projet_Air_Atlantique
         public MainWindow()
         {
             InitializeComponent();
+            Aeroport_Model.GetExistingAeroports();
+            Avion_Model.GetExistingAvions();
             DataContext = this;
             Title = "AIR ATLANTIQUE";
             List<Vol_Controller> vols = new List<Vol_Controller>();
@@ -52,10 +54,19 @@ namespace Projet_Air_Atlantique
             p.Show();
         }
 
-        private void AddNewLabel(object sender, RoutedEventArgs e)
+        //private void AddNewLabel(object sender, RoutedEventArgs e)
+        //{
+        //    Modele_Controller model = new Modele_Controller(Label.Text);
+        //    Modele_Model.AddToDb(model);
+
+        //}
+
+        private void AddNewVol(object sender, RoutedEventArgs e)
         {
-            Modele_Controller model = new Modele_Controller(Label.Text);
-            Modele_Model.AddToDb(model);
+
+            Windows.AddVol p = new Windows.AddVol();
+
+            p.Show();
 
         }
 

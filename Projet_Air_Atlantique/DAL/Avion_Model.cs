@@ -26,7 +26,7 @@ namespace Projet_Air_Atlantique.DAL
                 {
                     while (dr.Read())
                     {
-                        ExistingAvions.Add(new Avion_Controller(dr.GetInt32("idavion"), Modele_Model.CheckExistsThenAdd(dr.GetInt32("modele"))));
+                        ExistingAvions.Add(new Avion_Controller(dr.GetInt32("idavion"), Modele_Model.CheckExistsThenAdd(dr.GetInt32("modele")), dr.GetBoolean("maintenance"), dr.GetBoolean("envol")));
                     }
                     dr.Close();
                 }
@@ -36,7 +36,6 @@ namespace Projet_Air_Atlantique.DAL
 
         public static Avion_Controller CheckExistsThenAdd(int IdAvion)
         {
-            GetExistingAvions();
             if (ExistingAvions != null)
             {
                 bool exists = ExistingAvions.Any(a => a.IdProperty == IdAvion);
