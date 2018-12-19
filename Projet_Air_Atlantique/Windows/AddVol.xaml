@@ -27,7 +27,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <xctk:DateTimePicker Margin="107,294,463.333,70.667" Minimum="{Binding dt}"/>
+        
+        <xctk:TimePicker Name="HDepart" Margin="107,294,463.333,70.667" Minimum="{Binding dt}"/>
 
         <ComboBox Name="Avion" IsEditable="True" IsReadOnly="True" Text="Avion" HorizontalAlignment="Left" Margin="107,203,0,0" VerticalAlignment="Top" Width="196">
             <ComboBox.ItemTemplate>
@@ -36,10 +37,11 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <xctk:DateTimePicker Margin="458,294,112.333,70.667" Minimum="{Binding dt}"/>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="107,369,0,0" VerticalAlignment="Top" Width="75"/>
+        <xctk:TimePicker Name="HArrivee" Margin="458,294,112.333,70.667"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Click="AddNewVol" Margin="107,369,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="178,278,0,0" TextWrapping="Wrap" Text="Date et heure de départ" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="498,278,0,0" TextWrapping="Wrap" Text="Date et heure d'arrivée" VerticalAlignment="Top"/>
+        <DatePicker Name="Date" HorizontalAlignment="Left" Margin="107,250,0,0" VerticalAlignment="Top"/>
 
 
 
