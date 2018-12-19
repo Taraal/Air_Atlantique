@@ -11,51 +11,89 @@ namespace Projet_Air_Atlantique.DAL
 {
     class Vol_Model
     {
+        public static List<Vol_Controller> ExistingVols = new List<Vol_Controller>() { };
+
         static public string GetHeader(Vol_Controller vol)
         {
-            string header = vol.ADepartProperty.Id + " - " + vol.AArriveeProperty.Id + "  " + vol.DateProperty;
+            string header = vol.ADepartProperty.IdProperty + " - " + vol.AArriveeProperty.IdProperty + "  " + vol.DateProperty;
 
             return header;
         }
 
-        public static void GetVols(List<Vol_Controller> list)
+        public static void AddNewVol(Avion_Controller Avion, Aeroport_Controller AD, Aeroport_Controller AA, string Date, string HD, string HA)
         {
-            BddSQL.InitConnexion();
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * from vols";
-            BddSQL.connexion.Open();
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-            DataTable table = new DataTable();
-            table.Load(dr);
-            dr.Close();
-            foreach(DataRow row in table.Rows)
+            int IdAvion = Avion.IdProperty;
+            string IdAD = AD.IdProperty;
+            string IdAA = AA.IdProperty;
+            using (MySqlConnection c = BddSQL.InitConnexion())
             {
-                Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
-                v.HeaderProperty = GetHeader(v);
-                list.Add(v);
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "INSERT INTO vols (idvol, avion, adepart, aarrivee, heuredepart, heurearrivee, date) " +
+                    "VALUES (NULL, @idAvion, @IdAD, @IdAA, @HD, @HA, @Date)";
+                command.Parameters.AddWithValue("@idAvion", IdAvion);
+                command.Parameters.AddWithValue("@IdAD", IdAD);
+                command.Parameters.AddWithValue("@IdAA", IdAA);
+                command.Parameters.AddWithValue("@Date", Date);
+                command.Parameters.AddWithValue("@HD", HD);
+                command.Parameters.AddWithValue("@HA", HA);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static void DeleteVol(int IdVol)
+        {
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "DELETE FROM vols WHERE idvol = @idvol";
+                command.Parameters.AddWithValue("@idvol", IdVol);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        public static void GetExistingVols()
+        {
+
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM vols";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    DataTable table = new DataTable();
+                    table.Load(dr);
+                    foreach (DataRow row in table.Rows)
+                    {
+                        Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
+                        v.HeaderProperty = GetHeader(v);
+                        ExistingVols.Add(v);
+                    }
+                }
             }
 
-            dr.Close();
-            BddSQL.Closeconnection();
 
         }
 
         static public Dictionary<string, int> GetInfosInt(int Id)
         {
-            BddSQL.connexion.Close();
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM vols WHERE idvol = @idvol";
-            cmd.Parameters.Add("@idvol", MySqlDbType.Int32).Value = Id;
-            BddSQL.connexion.Open();
-
-            MySqlDataReader dr = cmd.ExecuteReader();
-
             Dictionary<string, int> dict = new Dictionary<string, int>();
-            while (dr.Read())
+
+            using (MySqlConnection c = BddSQL.InitConnexion())
             {
-                dict["idvol"] = Id;
-                dict["idavion"] = dr.GetInt32("avion");
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM vols WHERE idvol = @idvol";
+                command.Parameters.Add("@idvol", MySqlDbType.Int32).Value = Id;
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        dict["idvol"] = Id;
+                        dict["idavion"] = dr.GetInt32("avion");
+                    }
+                }
             }
 
             return dict;
@@ -64,23 +102,25 @@ namespace Projet_Air_Atlantique.DAL
 
         static public Dictionary<string, string> GetInfosString(int Id)
         {
-            BddSQL.connexion.Close();
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM vols WHERE idvol = @idvol";
-            cmd.Parameters.Add("@idvol", MySqlDbType.Int32).Value = Id;
-            BddSQL.connexion.Open();
-
-            MySqlDataReader dr = cmd.ExecuteReader();
-
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            while (dr.Read())
+            using (MySqlConnection c = BddSQL.InitConnexion())
             {
-                dict["adepart"] = dr.GetString("adepart");
-                dict["aarrivee"] = dr.GetString("aarrivee");
-                dict["date"] = dr.GetString("date");
-                dict["heurearrivee"] = dr.GetString("heurearrivee");
-                dict["heuredepart"] = dr.GetString("heuredepart");
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM vols";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
+
+                    while (dr.Read())
+                    {
+                        dict["adepart"] = dr.GetString("adepart");
+                        dict["aarrivee"] = dr.GetString("aarrivee");
+                        dict["date"] = dr.GetString("date");
+                        dict["heurearrivee"] = dr.GetString("heurearrivee");
+                        dict["heuredepart"] = dr.GetString("heuredepart");
+                    }
+                }
             }
+
 
             return dict;
 

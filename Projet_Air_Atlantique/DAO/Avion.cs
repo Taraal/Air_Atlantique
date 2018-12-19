@@ -9,17 +9,36 @@ namespace Projet_Air_Atlantique
 {
     class Avion
     {
-        public int Id { get; set; }
+        private int Id { get; set; }
         private Modele Modele { get; set; }
+        private bool Maintenance { get; set; }
+        private bool EnVol { get; set; }
 
-        public Avion(int Id)
+        public Modele ModeleProperty
         {
-            Dictionary<string, int> dr = DAL.Avion_Model.GetInfos(Id);
+            get { return Modele; }
+            set { Modele = value; }
+        }
 
-            this.Id = dr["idavion"];
-            this.Modele = new Modele(dr["idmodele"]);
-            
-            BddSQL.connexion.Close();
+        public bool MaintenanceProperty
+        {
+            get { return Maintenance; }
+            set { Maintenance = value; }
+        }
+
+        public bool EnVolProperty
+        {
+            get { return EnVol; }
+            set { EnVol = value; }
+        }
+
+        public Avion() { }
+
+        public Avion(int Id, Modele modele)
+        {
+            this.Id = Id;
+            this.Modele = modele;
+
         }
     }
 }

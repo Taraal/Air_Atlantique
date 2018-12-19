@@ -39,6 +39,11 @@ namespace Projet_Air_Atlantique.Controllers
             this.Label = "default";
         }
 
+        public Modele_Controller(string label)
+        {
+            this.Label = label;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
     }

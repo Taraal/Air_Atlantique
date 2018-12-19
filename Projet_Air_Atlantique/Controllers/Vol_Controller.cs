@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using Projet_Air_Atlantique.DAL;
 
 namespace Projet_Air_Atlantique.Controllers
 {
     class Vol_Controller : INotifyPropertyChanged
     {
         private int Id { get; set; }
-        private Avion Avion { get; set; }
-        private Aeroport ADepart { get; set; }
-        private Aeroport AArrivee { get; set; }
+        private Avion_Controller Avion { get; set; }
+        private Aeroport_Controller ADepart { get; set; }
+        private Aeroport_Controller AArrivee { get; set; }
         private string Date { get; set; }
         private string HeureArrivee { get; set; }
         private string HeureDepart { get; set; }
         private string Header { get; set; }
 
-        public Avion AvionProperty
+        public int IdProperty
+        {
+            get { return Id; }
+        }
+
+
+        public Avion_Controller AvionProperty
         {
             get
             {
@@ -30,13 +37,13 @@ namespace Projet_Air_Atlantique.Controllers
             }
         }
 
-        public Aeroport ADepartProperty
+        public Aeroport_Controller ADepartProperty
         {
             get { return ADepart; }
             set { ADepart = value; }
         }
 
-        public Aeroport AArriveeProperty
+        public Aeroport_Controller AArriveeProperty
         {
             get { return AArrivee; }
             set { AArrivee = value; }
@@ -67,10 +74,11 @@ namespace Projet_Air_Atlantique.Controllers
             set { Header = value; }
         }
 
+
         public Vol_Controller() { }
 
-        public Vol_Controller(int Id, Avion avion, Aeroport ADepart, 
-            Aeroport AArrivee, string Date, 
+        public Vol_Controller(int Id, Avion_Controller avion, Aeroport_Controller ADepart, 
+            Aeroport_Controller AArrivee, string Date, 
             string HeureDepart, string HeureArrivee)
         {
 
@@ -83,6 +91,14 @@ namespace Projet_Air_Atlantique.Controllers
             this.HeureArrivee = HeureArrivee;
             this.Header = Header;
         }
+
+        public static void DeleteVol(int IdVol)
+        {
+            Vol_Model.ExistingVols.RemoveAll(v => v.IdProperty == IdVol);
+            Vol_Model.DeleteVol(IdVol);
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

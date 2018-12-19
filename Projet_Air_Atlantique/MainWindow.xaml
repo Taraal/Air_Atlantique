@@ -7,26 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Expander Header="{Binding HeaderProperty}">
-                        <Canvas>
-                            
-                            <BulletDecorator>
-                                <BulletDecorator.Bullet>
-                                    <Image Margin="10" Width="300" Source="/Medias/triangle-32.png"/>
-                                </BulletDecorator.Bullet>
-                            </BulletDecorator>
-                 
+                    <Canvas Margin="15">
+
+                        <TextBlock Canvas.Left="5" Canvas.Top="-5" Text="{Binding HeaderProperty}"></TextBlock>
                         
-                            <Button Margin="10" Name="Details" Content="Ouvrir les détails" Tag="{Binding idVol}" Click="DetailsClick" Width="100" />
-                        </Canvas>
-                    </Expander>
+                        <Button x:Name="Details" Canvas.Left="250" Canvas.Top="-7" HorizontalAlignment="Stretch" Content="Ouvrir les détails" Tag="{Binding IdProperty}" Click="DetailsClick" Width="100" />
+
+                    </Canvas>
+                    
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
-
         </ListBox>
+        
+        <Button Grid.ColumnSpan="2" Content="Ajouter un vol" Click="AddNewVol" HorizontalAlignment="Left" Margin="575,193,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

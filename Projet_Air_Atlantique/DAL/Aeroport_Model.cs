@@ -5,36 +5,49 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Projet_Air_Atlantique.Controllers;
 
 
 namespace Projet_Air_Atlantique.DAL
 {
-    class Aeroport_Model
+    class Aeroport_Model 
     {
 
-        public static List<Aeroport> ExistingAeroports = new List<Aeroport>()
+        public static List<Aeroport_Controller> ExistingAeroports = new List<Aeroport_Controller>() { };
+
+
+        public static void GetExistingAeroports()
         {
 
-        };
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "SELECT * FROM aeroports";
+                using (MySqlDataReader dr = command.ExecuteReader())
+                {
 
-        public static List<Aeroport> GetExistingAeroports()
-        {
+                    while (dr.Read())
+                    {
+                        ExistingAeroports.Add(new Aeroport_Controller(dr.GetString("idaeroport"), dr.GetString("nom")));
+                    }
+                }
+            }
 
-            return ExistingAeroports;
+
         }
 
-        public static Aeroport CheckExistsThenAdd(string IdAeroport)
+        public static Aeroport_Controller CheckExistsThenAdd(string IdAeroport)
         {
             if (ExistingAeroports != null)
             {
-                bool exists = ExistingAeroports.Any(a => a.Id == IdAeroport);
+                bool exists = ExistingAeroports.Any(a => a.IdProperty == IdAeroport);
                 if (exists)
                 {
-                    return ExistingAeroports.Find(a => a.Id == IdAeroport);
+                    return ExistingAeroports.Find(a => a.IdProperty == IdAeroport);
                 }
                 else
                 {
-                    Aeroport aero = new Aeroport(IdAeroport);
+                    Aeroport_Controller aero = new Aeroport_Controller(IdAeroport);
                     ExistingAeroports.Add(aero);
 
                     return aero;
@@ -42,7 +55,7 @@ namespace Projet_Air_Atlantique.DAL
             }
             else
             {
-                Aeroport aero = new Aeroport(IdAeroport);
+                Aeroport_Controller aero = new Aeroport_Controller(IdAeroport);
                 ExistingAeroports.Add(aero);
 
                 return aero;
@@ -50,16 +63,16 @@ namespace Projet_Air_Atlantique.DAL
         }
         
 
-        static public MySqlDataReader GetInfos(string Id)
-        {
-            MySqlCommand cmd = BddSQL.connexion.CreateCommand();
-            cmd.CommandText = "SELECT * FROM aeroports WHERE idaeroport = @idaeroport";
-            cmd.Parameters.Add("@idaeroport", MySqlDbType.String).Value = Id;
-            BddSQL.connexion.Open();
+        //static public MySqlDataReader GetInfos(string Id)
+        //{
+        //    MySqlCommand cmd = BddSQL.connexion.CreateCommand();
+        //    cmd.CommandText = "SELECT * FROM aeroports WHERE idaeroport = @idaeroport";
+        //    cmd.Parameters.Add("@idaeroport", MySqlDbType.String).Value = Id;
+        //    BddSQL.connexion.Open();
 
-            return cmd.ExecuteReader();
+        //    return cmd.ExecuteReader();
             
-        }
+        //}
 
 
 
