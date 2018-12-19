@@ -59,6 +59,7 @@ namespace Projet_Air_Atlantique.Windows
                 Vol_Controller.DeleteVol(Convert.ToInt32(this.Title));
 
                 System.Windows.MessageBox.Show("Vol supprimé avec succès");
+                this.Close();
             }
         }
     }
