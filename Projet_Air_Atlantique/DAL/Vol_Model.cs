@@ -43,7 +43,6 @@ namespace Projet_Air_Atlantique.DAL
 
         public static void UpdateVol(int IdVol, Avion_Controller Avion, Aeroport_Controller AD, Aeroport_Controller AA, string Date, string HD, string HA)
         {
-            IdVol = 1;
             int IdAvion = Avion.IdProperty;
             string IdAD = AD.IdProperty;
             string IdAA = AA.IdProperty;

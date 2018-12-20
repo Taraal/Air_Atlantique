@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -18,11 +17,11 @@ using Projet_Air_Atlantique.DAL;
 namespace Projet_Air_Atlantique.Windows
 {
     /// <summary>
-    /// Interaction logic for GestionClient.xaml
+    /// Interaction logic for ModifClient.xaml
     /// </summary>
-    public partial class GestionClient : Window
+    public partial class ModifClient : Window
     {
-        public GestionClient(int Id)
+        public ModifClient(int Id)
         {
             InitializeComponent();
             Client_Controller client = Client_Model.ExistingClients.Find(c => c.IdProperty == Id);
@@ -35,45 +34,29 @@ namespace Projet_Air_Atlantique.Windows
             Telephone.Text = client.TelephoneProperty;
             Points.Text = client.PointsProperty.ToString();
 
-            Modif.Tag = Id;
+            Back.Tag = Id;
         }
 
-        private void DeleteClient(object sender, RoutedEventArgs e)
-        {
-            if (System.Windows.Forms.MessageBox.Show("Confirmer la suppression de ce vol ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
-            {
-                Client_Controller.DeleteClient(Convert.ToInt32(this.Title));
+
+        public void UpdateClient(object sender, RoutedEventArgs e) { 
 
 
-                MainWindow m = new MainWindow();
-                m.Activate();
-                m.Show();
-
-                this.Close();
-            }
+            
         }
 
-        private void ModifClient(object sender, RoutedEventArgs e)
+
+        public void Retour(object sender, RoutedEventArgs e)
         {
             System.Windows.Controls.Button but = sender as System.Windows.Controls.Button;
 
-            ModifClient p = new ModifClient(Convert.ToInt32(((System.Windows.Controls.Button)sender).Tag));
-
-            p.Show();
-
-            this.Close();
-
-        }
-
-        private void Retour(object sender, RoutedEventArgs e)
-        {
-            MainWindow m = new MainWindow();
-            m.Activate();
-            m.Show();
+            
+            GestionClient g = new GestionClient(Convert.ToInt32(((System.Windows.Controls.Button)sender).Tag));
+            g.Activate();
+            g.Show();
 
             this.Close();
         }
+
 
 
     }

@@ -105,6 +105,9 @@
     <Compile Include="Windows\GestionClient.xaml.cs">
       <DependentUpon>GestionClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ModifClient.xaml.cs">
+      <DependentUpon>ModifClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ModifVol.xaml.cs">
       <DependentUpon>ModifVol.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\GestionClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ModifClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

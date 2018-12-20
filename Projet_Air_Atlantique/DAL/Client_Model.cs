@@ -63,7 +63,23 @@ namespace Projet_Air_Atlantique.DAL
             }
         }
 
-        public static void UpdateClien() { }
+        public static void UpdateClient(int IdClient, string nom, string prenom, string adresse, string telephone, int points)
+        {
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "UPDATE clients SET nom=@nom, prenom=@prenom, adresse=@adresse, telephone=@telephone, points=@points WHERE idclients=@idclient";
+                command.Parameters.AddWithValue("@nom", nom);
+                command.Parameters.AddWithValue("@prenom", prenom);
+                command.Parameters.AddWithValue("@adresse", adresse);
+                command.Parameters.AddWithValue("@telephone", telephone);
+                command.Parameters.AddWithValue("@points", points);
+                command.Parameters.AddWithValue("@idclient",IdClient);
+
+                command.ExecuteNonQuery();
+            }
+
+        }
 
     }
 }
