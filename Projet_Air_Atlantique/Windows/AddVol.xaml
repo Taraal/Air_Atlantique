@@ -38,10 +38,12 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <xctk:TimePicker Name="HArrivee" Margin="458,294,112.333,70.667"/>
-        <Button Content="Valider" HorizontalAlignment="Left" Click="AddNewVol" Margin="107,369,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Click="AddNewVol" Margin="559,359,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="178,278,0,0" TextWrapping="Wrap" Text="Date et heure de départ" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="498,278,0,0" TextWrapping="Wrap" Text="Date et heure d'arrivée" VerticalAlignment="Top"/>
         <DatePicker Name="Date" HorizontalAlignment="Left" Margin="107,250,0,0" VerticalAlignment="Top"/>
+
+        <Button Content="Retour" HorizontalAlignment="Left" Click="Retour" Margin="107,359,0,0" VerticalAlignment="Top" Width="75"/>
 
 
 

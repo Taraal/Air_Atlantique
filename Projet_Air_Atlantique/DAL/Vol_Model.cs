@@ -90,9 +90,12 @@ namespace Projet_Air_Atlantique.DAL
                     table.Load(dr);
                     foreach (DataRow row in table.Rows)
                     {
-                        Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
-                        v.HeaderProperty = GetHeader(v);
-                        ExistingVols.Add(v);
+                        if (!ExistingVols.Any(vol => vol.IdProperty == Convert.ToInt32(row["idvol"])))
+                        {
+                            Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
+                            v.HeaderProperty = GetHeader(v);
+                            ExistingVols.Add(v);
+                        }
                     }
                 }
             }

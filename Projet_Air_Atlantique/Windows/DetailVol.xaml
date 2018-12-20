@@ -17,6 +17,13 @@
         <TextBlock Name="VolNum" HorizontalAlignment="Left" Margin="559,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="TextBlock"/></TextBlock>
         <Button Content="Supprimer ce vol" Click="DeleteVol" HorizontalAlignment="Left" Margin="126,367,0,0" VerticalAlignment="Top" Width="49"/>
         <Button Name="Modif" Content="Modifier ce vol" Click="UpdateVol" HorizontalAlignment="Left" Margin="559,367,0,0" VerticalAlignment="Top" Width="49"/>
+        <Label Content="Aéroport de Départ" HorizontalAlignment="Left" Margin="118,35,0,0" VerticalAlignment="Top"/>
+        <Label Content="Aéroport d'arrivée" HorizontalAlignment="Left" Margin="559,29,0,0" VerticalAlignment="Top"/>
+        <Label Content="Heure de départ" HorizontalAlignment="Left" Margin="126,92,0,0" VerticalAlignment="Top"/>
+        <Label Content="Heure d'arrivée" HorizontalAlignment="Left" Margin="560,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date de départ" HorizontalAlignment="Left" Margin="126,177,0,0" VerticalAlignment="Top"/>
+        <Label Content="Modèle d'avion" HorizontalAlignment="Left" Margin="560,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="Numéro du vol" HorizontalAlignment="Left" Margin="126,274,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

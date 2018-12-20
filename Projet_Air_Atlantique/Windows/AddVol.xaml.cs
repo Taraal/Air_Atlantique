@@ -42,10 +42,28 @@ namespace Projet_Air_Atlantique.Windows
                 string DString = Date.SelectedDate.Value.Year.ToString() + "-" + Date.SelectedDate.Value.Month.ToString() + "-" + Date.SelectedDate.Value.Day.ToString();
                 
                 Vol_Model.AddNewVol(avion, AD, AA, DString, HDString, HAString);
-                System.Windows.MessageBox.Show("Vol ajouté !");
+
+                MainWindow m = new MainWindow();
+                m.Activate();
+                m.Show();
+
+
                 this.Close();
 
                     }
+
+        }
+
+
+        private void Retour(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+
+            m.Activate();
+            m.Show();
+
+            this.Close();
+
 
         }
 
