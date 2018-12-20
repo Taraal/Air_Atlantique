@@ -63,5 +63,7 @@ namespace Projet_Air_Atlantique.DAL
             }
         }
 
+        public static void UpdateClien() { }
+
     }
 }

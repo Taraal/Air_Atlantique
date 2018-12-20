@@ -59,7 +59,10 @@ namespace Projet_Air_Atlantique.Windows
             {
                 Vol_Controller.DeleteVol(Convert.ToInt32(this.Title));
 
-                System.Windows.MessageBox.Show("Vol supprimé avec succès");
+                MainWindow m = new MainWindow();
+                m.Activate();
+                m.Show();
+                
                 this.Close();
             }
         }
@@ -74,6 +77,15 @@ namespace Projet_Air_Atlantique.Windows
 
             p.Show();
 
+        }
+
+        private void Retour(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.Activate();
+            m.Show();
+
+            this.Close();
         }
 
     }

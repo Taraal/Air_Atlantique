@@ -54,17 +54,15 @@ namespace Projet_Air_Atlantique.Windows
             }
         }
 
-        //private void UpdateClient(object sender, RoutedEventArgs e)
-        //{
-        //    System.Windows.Controls.Button but = sender as System.Windows.Controls.Button;
+        private void Retour(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            m.Activate();
+            m.Show();
+
+            this.Close();
+        }
 
 
-
-        //    ModifVol p = new ModifVol(Convert.ToInt32(((System.Windows.Controls.Button)sender).Tag));
-
-        //    p.Show();
-
-
-        //}
     }
 }

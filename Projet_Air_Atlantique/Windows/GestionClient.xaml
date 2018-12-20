@@ -18,7 +18,8 @@
         <TextBlock Name="Telephone" HorizontalAlignment="Left" Margin="131,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock Name="Points" HorizontalAlignment="Left" Margin="131,303,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
-        <Button Content="Supprimer ce client" Click="DeleteClient" HorizontalAlignment="Left" Margin="126,367,0,0" VerticalAlignment="Top" Width="49"/>
+        <Button Content="Supprimer ce client" Click="DeleteClient" HorizontalAlignment="Left" Margin="126,367,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button Content="Retour" HorizontalAlignment="Left" Click="Retour" Margin="515,367,0,0" VerticalAlignment="Top" Width="75"/>
         <!--<Button Name="Modif" Content="Modifier ce client" Click="UpdateClient" HorizontalAlignment="Left" Margin="559,367,0,0" VerticalAlignment="Top" Width="49"/>-->
 
     </Grid>

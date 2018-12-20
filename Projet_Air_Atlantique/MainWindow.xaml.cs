@@ -52,6 +52,7 @@ namespace Projet_Air_Atlantique
             Windows.DetailVol p = new Windows.DetailVol(Convert.ToInt32(((Button)sender).Tag));
 
             p.Show();
+            this.Close();
         }
 
         private void AddNewVol(object sender, RoutedEventArgs e)
@@ -70,6 +71,7 @@ namespace Projet_Air_Atlantique
             Windows.GestionClient gc = new Windows.GestionClient(Convert.ToInt32(((Button)sender).Tag));
 
             gc.Show();
+            this.Close();
 
         }
 

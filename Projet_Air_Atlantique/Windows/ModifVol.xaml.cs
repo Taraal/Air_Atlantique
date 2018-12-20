@@ -25,20 +25,24 @@ namespace Projet_Air_Atlantique.Windows
         public ModifVol(int Id)
         {
             InitializeComponent();
+            Aeroport_Model.GetExistingAeroports();
             Vol_Controller vol = Vol_Model.ExistingVols.Find(v => v.IdProperty == Id);
             List<Avion_Controller> myList = Avion_Model.ExistingAvions.Where(x => x.MaintenanceProperty == false && x.EnVolProperty == false).ToList();
 
             ADepart.ItemsSource = Aeroport_Model.ExistingAeroports;
-            ADepart.SelectedIndex = Aeroport_Model.ExistingAeroports.FindIndex(a => a.IdProperty == vol.ADepartProperty.IdProperty);
             ADepart.Text = Aeroport_Model.ExistingAeroports.Find(a => a.IdProperty == vol.ADepartProperty.IdProperty).NomProperty;
+            ADepart.SelectedIndex = Aeroport_Model.ExistingAeroports.FindIndex(a => a.IdProperty == vol.ADepartProperty.IdProperty);
+            
 
             AArrivee.ItemsSource = Aeroport_Model.ExistingAeroports;
-            AArrivee.SelectedIndex = Aeroport_Model.ExistingAeroports.FindIndex(a => a.IdProperty == vol.AArriveeProperty.IdProperty);
             AArrivee.Text = Aeroport_Model.ExistingAeroports.Find(a => a.IdProperty == vol.AArriveeProperty.IdProperty).NomProperty;
+            AArrivee.SelectedIndex = Aeroport_Model.ExistingAeroports.FindIndex(a => a.IdProperty == vol.AArriveeProperty.IdProperty);
+            
 
             Avion.ItemsSource = myList;
-            Avion.SelectedIndex = Avion_Model.ExistingAvions.FindIndex(av => av.IdProperty == vol.AvionProperty.IdProperty);
             Avion.Text = Avion_Model.ExistingAvions.Find(av => av.IdProperty == vol.AvionProperty.IdProperty).ModeleProperty.LabelProperty;
+            Avion.SelectedIndex = Avion_Model.ExistingAvions.FindIndex(av => av.IdProperty == vol.AvionProperty.IdProperty);
+            
 
             HDepart.Value = DateTime.Parse(vol.HeureDepartProperty);
 
@@ -66,8 +70,11 @@ namespace Projet_Air_Atlantique.Windows
             MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
             {
                 int IdVol = Convert.ToInt32(this.Title);
-                Aeroport_Controller AD = Aeroport_Model.ExistingAeroports[ADepart.SelectedIndex];
-                Aeroport_Controller AA = Aeroport_Model.ExistingAeroports[AArrivee.SelectedIndex];
+                Aeroport_Controller AB = (Aeroport_Controller)ADepart.SelectedItem;
+                Aeroport_Controller AC = (Aeroport_Controller)AArrivee.SelectedItem;
+
+                //Aeroport_Controller AD = Aeroport_Model.ExistingAeroports[ADepart.SelectedIndex];
+                //Aeroport_Controller AA = Aeroport_Model.ExistingAeroports[AArrivee.SelectedIndex];
                 Avion_Controller avion = Avion_Model.ExistingAvions[Avion.SelectedIndex];
                 DateTime? HD = HDepart.Value;
                 DateTime? HA = HArrivee.Value;
@@ -75,7 +82,7 @@ namespace Projet_Air_Atlantique.Windows
                 string HAString = HA.Value.Hour.ToString() + ":" + HA.Value.Minute.ToString() + ":" + HA.Value.Second.ToString();
                 string DString = Date.SelectedDate.Value.Year.ToString() + "-" + Date.SelectedDate.Value.Month.ToString() + "-" + Date.SelectedDate.Value.Day.ToString();
 
-                Vol_Model.UpdateVol(IdVol, avion, AD, AA, DString, HDString, HAString);
+                Vol_Model.UpdateVol(IdVol, avion, AB, AC, DString, HDString, HAString);
                 System.Windows.MessageBox.Show("Vol modifié !");
                 this.Close();
 

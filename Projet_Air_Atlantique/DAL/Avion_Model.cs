@@ -26,7 +26,10 @@ namespace Projet_Air_Atlantique.DAL
                 {
                     while (dr.Read())
                     {
-                        ExistingAvions.Add(new Avion_Controller(dr.GetInt32("idavion"), Modele_Model.CheckExistsThenAdd(dr.GetInt32("modele")), dr.GetBoolean("maintenance"), dr.GetBoolean("envol")));
+                        if (!ExistingAvions.Any(avion => avion.IdProperty == dr.GetInt32("idavion")))
+                        {
+                            ExistingAvions.Add(new Avion_Controller(dr.GetInt32("idavion"), Modele_Model.CheckExistsThenAdd(dr.GetInt32("modele")), dr.GetBoolean("maintenance"), dr.GetBoolean("envol")));
+                        }
                     }
                     dr.Close();
                 }
