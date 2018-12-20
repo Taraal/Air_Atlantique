@@ -8,10 +8,10 @@ namespace Projet_Air_Atlantique.Controllers
 {
     class Avion_Controller
     {
-        private int Id { get; set; }
-        private Modele_Controller Modele { get; set; }
-        private bool Maintenance { get; set; }
-        private bool EnVol { get; set; }
+        private int Id;
+        private Modele_Controller Modele;
+        private bool Maintenance;
+        private bool EnVol;
 
 
         public int IdProperty

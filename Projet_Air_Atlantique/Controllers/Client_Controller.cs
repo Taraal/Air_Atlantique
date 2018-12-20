@@ -10,13 +10,13 @@ namespace Projet_Air_Atlantique.Controllers
     class Client_Controller
     {
 
-        private int Id { get; set; }
-        private string Nom { get; set; }
-        private string Prenom { get; set; }
-        private string Adresse { get; set; }
-        private string Telephone { get; set; }
-        private string Mail { get; set; }
-        private int Points { get; set; }
+        private int Id;
+        private string Nom;
+        private string Prenom;
+        private string Adresse;
+        private string Telephone;
+        private string Mail;
+        private int Points;
 
         public int IdProperty
         {

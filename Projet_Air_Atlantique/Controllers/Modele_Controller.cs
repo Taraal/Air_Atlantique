@@ -10,8 +10,8 @@ namespace Projet_Air_Atlantique.Controllers
     class Modele_Controller : INotifyPropertyChanged
     {
 
-        private int Id { get; set; }
-        private string Label { get; set; }
+        private int Id;
+        private string Label;
 
         public int IdProperty
         {

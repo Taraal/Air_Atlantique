@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Projet_Air_Atlantique.DAL;
 
+
 namespace Projet_Air_Atlantique.Controllers
 {
     class Vol_Controller : INotifyPropertyChanged
     {
-        private int Id { get; set; }
-        private Avion_Controller Avion { get; set; }
-        private Aeroport_Controller ADepart { get; set; }
-        private Aeroport_Controller AArrivee { get; set; }
-        private string Date { get; set; }
-        private string HeureArrivee { get; set; }
-        private string HeureDepart { get; set; }
-        private string Header { get; set; }
+        private int Id;
+        private Avion_Controller Avion;
+        private Aeroport_Controller ADepart;
+        private Aeroport_Controller AArrivee;
+        private string Date;
+        private string HeureArrivee;
+        private string HeureDepart;
+        private string Header;
 
         public int IdProperty
         {

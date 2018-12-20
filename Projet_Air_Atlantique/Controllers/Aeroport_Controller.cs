@@ -9,8 +9,8 @@ namespace Projet_Air_Atlantique.Controllers
 {
     class Aeroport_Controller : INotifyPropertyChanged
     {
-        private string Id { get; set; }
-        private string Nom { get; set; }
+        private string Id;
+        private string Nom;
 
         public string IdProperty
         {
