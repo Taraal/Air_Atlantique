@@ -41,6 +41,29 @@ namespace Projet_Air_Atlantique.DAL
             }
         }
 
+        public static void UpdateVol(int IdVol, Avion_Controller Avion, Aeroport_Controller AD, Aeroport_Controller AA, string Date, string HD, string HA)
+        {
+            IdVol = 1;
+            int IdAvion = Avion.IdProperty;
+            string IdAD = AD.IdProperty;
+            string IdAA = AA.IdProperty;
+            using (MySqlConnection c = BddSQL.InitConnexion())
+            {
+                MySqlCommand command = c.CreateCommand();
+                command.CommandText = "UPDATE vols SET avion=@idavion, adepart=@IdAD, aarrivee=@IdAA, heuredepart=@HD, heurearrivee=@HA, date=@Date WHERE idvol=@idvol";
+                command.Parameters.AddWithValue("@idAvion", IdAvion);
+                command.Parameters.AddWithValue("@IdAD", IdAD);
+                command.Parameters.AddWithValue("@IdAA", IdAA);
+                command.Parameters.AddWithValue("@Date", Date);
+                command.Parameters.AddWithValue("@HD", HD);
+                command.Parameters.AddWithValue("@HA", HA);
+                command.Parameters.AddWithValue("@idvol", IdVol);
+
+                command.ExecuteNonQuery();
+            }
+
+        }
+
         public static void DeleteVol(int IdVol)
         {
             using (MySqlConnection c = BddSQL.InitConnexion())
@@ -67,9 +90,12 @@ namespace Projet_Air_Atlantique.DAL
                     table.Load(dr);
                     foreach (DataRow row in table.Rows)
                     {
-                        Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
-                        v.HeaderProperty = GetHeader(v);
-                        ExistingVols.Add(v);
+                        if (!ExistingVols.Any(vol => vol.IdProperty == Convert.ToInt32(row["idvol"])))
+                        {
+                            Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
+                            v.HeaderProperty = GetHeader(v);
+                            ExistingVols.Add(v);
+                        }
                     }
                 }
             }

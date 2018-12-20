@@ -11,14 +11,14 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2">
+        <ListBox Name="Flights" HorizontalAlignment="Left" Height="401" Margin="10,10,0,0" VerticalAlignment="Top" Width="269" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Canvas Margin="15">
+                    <Canvas Margin="10">
 
-                        <TextBlock Canvas.Left="5" Canvas.Top="-5" Text="{Binding HeaderProperty}"></TextBlock>
+                        <TextBlock Canvas.Left="-15" Canvas.Top="-5" Text="{Binding HeaderProperty}"></TextBlock>
                         
-                        <Button x:Name="Details" Canvas.Left="250" Canvas.Top="-7" HorizontalAlignment="Stretch" Content="Ouvrir les détails" Tag="{Binding IdProperty}" Click="DetailsClick" Width="100" />
+                        <Button x:Name="Details" Canvas.Left="150" Canvas.Top="-7" HorizontalAlignment="Stretch" Content="Ouvrir les détails" Tag="{Binding IdProperty}" Click="DetailsClick" Width="100" />
 
                     </Canvas>
                     
@@ -26,6 +26,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
         
-        <Button Grid.ColumnSpan="2" Content="Ajouter un vol" Click="AddNewVol" HorizontalAlignment="Left" Margin="575,193,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Grid.ColumnSpan="2" Content="Ajouter un vol" Click="AddNewVol" HorizontalAlignment="Left" Margin="341,90,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button Grid.ColumnSpan="2" Content="Ajouter un client" HorizontalAlignment="Left" Click="AddNewClient" Margin="341,284,0,0" VerticalAlignment="Top" Width="112"/>
+        <ListBox x:Name="Clients" HorizontalAlignment="Left" Height="401" Margin="514,10,0,0" VerticalAlignment="Top" Width="269" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Canvas Margin="15">
+
+                        <TextBlock Canvas.Left="5" Canvas.Top="-5" Text="{Binding NomProperty}"/>
+                        <TextBlock Canvas.Left="40" Canvas.Top="-5" Text="{Binding PrenomProperty}"/>
+                        <Button x:Name="Details" Canvas.Left="150" Canvas.Top="-7" HorizontalAlignment="Stretch" Content="Ouvrir les détails" Tag="{Binding IdProperty}" Click="DetailsClientClick" Width="100" />
+
+                    </Canvas>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

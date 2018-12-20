@@ -34,12 +34,13 @@ namespace Projet_Air_Atlantique
             Aeroport_Model.GetExistingAeroports();
             Avion_Model.GetExistingAvions();
             Vol_Model.GetExistingVols();
+            Client_Model.GetExistingClients();
             DataContext = this;
             Title = "AIR ATLANTIQUE";
             
-            
-
             Flights.ItemsSource = Vol_Model.ExistingVols;
+
+            Clients.ItemsSource = Client_Model.ExistingClients;
 
             //MessageBox.Show(vols[0].DateProperty);
         }
@@ -48,26 +49,37 @@ namespace Projet_Air_Atlantique
         {
             Button but = sender as Button;
 
-             
-     
             Windows.DetailVol p = new Windows.DetailVol(Convert.ToInt32(((Button)sender).Tag));
 
             p.Show();
         }
-
-        //private void AddNewLabel(object sender, RoutedEventArgs e)
-        //{
-        //    Modele_Controller model = new Modele_Controller(Label.Text);
-        //    Modele_Model.AddToDb(model);
-
-        //}
 
         private void AddNewVol(object sender, RoutedEventArgs e)
         {
 
             Windows.AddVol p = new Windows.AddVol();
 
+
             p.Show();
+
+            this.Close();
+        }
+
+        private void DetailsClientClick(object sender, RoutedEventArgs e)
+        {
+            Windows.GestionClient gc = new Windows.GestionClient(Convert.ToInt32(((Button)sender).Tag));
+
+            gc.Show();
+
+        }
+
+        private void AddNewClient(object sender, RoutedEventArgs e)
+        {
+
+            Windows.AddClient p = new Windows.AddClient();
+
+            p.Show();
+            this.Close();
 
         }
 

@@ -1,0 +1,25 @@
+﻿<Window x:Class="Projet_Air_Atlantique.Windows.GestionClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_Air_Atlantique.Windows"
+        mc:Ignorable="d"
+        Title="GestionClient" Height="450" Width="800">
+    <Grid>
+        <Label Content="Nom" HorizontalAlignment="Left" Margin="131,81,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prénom" HorizontalAlignment="Left" Margin="573,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.304,-0.359"/>
+        <Label Content="Adresse" HorizontalAlignment="Left" Margin="128,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="Téléphone" HorizontalAlignment="Left" Margin="559,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="Points de fidélité" HorizontalAlignment="Left" Margin="110,277,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="Nom" HorizontalAlignment="Left" Margin="131,107,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Name="Prenom" HorizontalAlignment="Left" Margin="573,107,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Name="Adresse" HorizontalAlignment="Left" Margin="573,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Name="Telephone" HorizontalAlignment="Left" Margin="131,201,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Name="Points" HorizontalAlignment="Left" Margin="131,303,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+
+        <Button Content="Supprimer ce client" Click="DeleteClient" HorizontalAlignment="Left" Margin="126,367,0,0" VerticalAlignment="Top" Width="49"/>
+        <!--<Button Name="Modif" Content="Modifier ce client" Click="UpdateClient" HorizontalAlignment="Left" Margin="559,367,0,0" VerticalAlignment="Top" Width="49"/>-->
+
+    </Grid>
+</Window>
