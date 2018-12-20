@@ -1,0 +1,50 @@
+﻿<Window x:Class="Projet_Air_Atlantique.Windows.ModifVol"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_Air_Atlantique.Windows"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="ModifVol" Height="450" Width="800">
+    <Grid>
+
+        <ComboBox Name="ADepart" IsEditable="True" IsReadOnly="True" Text="Aéroport de départ" Margin="107,128,490.333,254.667">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Name="Lala" Text="{Binding NomProperty}" />
+                </DataTemplate>
+
+            </ComboBox.ItemTemplate>
+
+        </ComboBox>
+
+        <ComboBox Name="AArrivee" IsEditable="True" IsReadOnly="True" Text="Aeroport d'arrivee" Margin="460,128,112.333,254.667">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <ComboBoxItem Content="{Binding NomProperty}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <xctk:TimePicker Name="HDepart" Margin="107,294,463.333,70.667" Minimum="{Binding dt}"/>
+
+        <ComboBox Name="Avion" IsEditable="True" IsReadOnly="True" Text="Avion" HorizontalAlignment="Left" Margin="107,203,0,0" VerticalAlignment="Top" Width="196">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Name="Lala" Text="{Binding ModeleProperty.LabelProperty}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <xctk:TimePicker Name="HArrivee" Margin="458,294,112.333,70.667"/>
+        
+        
+        <Button Content="Valider" HorizontalAlignment="Left" Click="ModifierVol" Margin="498,373,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="178,278,0,0" TextWrapping="Wrap" Text="Date et heure de départ" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="498,278,0,0" TextWrapping="Wrap" Text="Date et heure d'arrivée" VerticalAlignment="Top"/>
+        <DatePicker Name="Date" HorizontalAlignment="Left" Margin="107,250,0,0" VerticalAlignment="Top"/>
+        <Button Content="Annuler" HorizontalAlignment="Left" Click="Annuler" Margin="178,373,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+</Window>

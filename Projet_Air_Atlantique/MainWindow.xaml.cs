@@ -48,19 +48,10 @@ namespace Projet_Air_Atlantique
         {
             Button but = sender as Button;
 
-             
-     
             Windows.DetailVol p = new Windows.DetailVol(Convert.ToInt32(((Button)sender).Tag));
 
             p.Show();
         }
-
-        //private void AddNewLabel(object sender, RoutedEventArgs e)
-        //{
-        //    Modele_Controller model = new Modele_Controller(Label.Text);
-        //    Modele_Model.AddToDb(model);
-
-        //}
 
         private void AddNewVol(object sender, RoutedEventArgs e)
         {
