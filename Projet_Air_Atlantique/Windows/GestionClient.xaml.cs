@@ -40,7 +40,7 @@ namespace Projet_Air_Atlantique.Windows
 
         private void DeleteClient(object sender, RoutedEventArgs e)
         {
-            if (System.Windows.Forms.MessageBox.Show("Confirmer la suppression de ce vol ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+            if (System.Windows.Forms.MessageBox.Show("Confirmer la suppression de ce client ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
             MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
             {
                 Client_Controller.DeleteClient(Convert.ToInt32(this.Title));

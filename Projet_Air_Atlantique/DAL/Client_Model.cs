@@ -25,8 +25,8 @@ namespace Projet_Air_Atlantique.DAL
 
                     while (dr.Read())
                     {
-                        if (!ExistingClients.Any(vol => vol.IdProperty == dr.GetInt32("idclients"))){
-                            ExistingClients.Add(new Client_Controller(dr.GetInt32("idclients"), dr.GetString("nom"), dr.GetString("prenom"), dr.GetString("adresse"), dr.GetString("telephone"), dr.GetString("mail"), dr.GetInt32("points")));
+                        if (!ExistingClients.Any(vol => vol.IdProperty == dr.GetInt32("idclient"))){
+                            ExistingClients.Add(new Client_Controller(dr.GetInt32("idclient"), dr.GetString("nom"), dr.GetString("prenom"), dr.GetString("adresse"), dr.GetString("telephone"), dr.GetString("mail"), dr.GetInt32("points")));
                         }
                     }
                 }
@@ -39,8 +39,8 @@ namespace Projet_Air_Atlantique.DAL
             using (MySqlConnection c = BddSQL.InitConnexion())
             {
                 MySqlCommand command = c.CreateCommand();
-                command.CommandText = "INSERT INTO clients (idclients, nom, prenom, adresse, telephone, mail, points) " +
-                    "VALUES (NULL, @nom, @prenom, @adresse, @telephone, @mail, 0)";
+                command.CommandText = "INSERT INTO clients (idclient, nom, prenom, adresse, telephone, mail) " +
+                    "VALUES (NULL, @nom, @prenom, @adresse, @telephone, @mail)";
                 command.Parameters.AddWithValue("@nom", client.NomProperty);
                 command.Parameters.AddWithValue("@prenom", client.PrenomProperty);
                 command.Parameters.AddWithValue("@adresse", client.AdresseProperty);
@@ -56,7 +56,7 @@ namespace Projet_Air_Atlantique.DAL
             using (MySqlConnection c = BddSQL.InitConnexion())
             {
                 MySqlCommand command = c.CreateCommand();
-                command.CommandText = "DELETE FROM clients WHERE idclients = @idclient";
+                command.CommandText = "DELETE FROM clients WHERE idclient = @idclient";
                 command.Parameters.AddWithValue("@idclient", IdClient);
 
                 command.ExecuteNonQuery();

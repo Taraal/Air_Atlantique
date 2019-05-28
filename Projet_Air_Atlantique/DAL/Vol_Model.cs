@@ -28,7 +28,7 @@ namespace Projet_Air_Atlantique.DAL
             using (MySqlConnection c = BddSQL.InitConnexion())
             {
                 MySqlCommand command = c.CreateCommand();
-                command.CommandText = "INSERT INTO vols (idvol, avion, adepart, aarrivee, heuredepart, heurearrivee, date) " +
+                command.CommandText = "INSERT INTO vols (idvol, avion, adepart, aarrivee, heuredepart, heurearrivee, datedepart) " +
                     "VALUES (NULL, @idAvion, @IdAD, @IdAA, @HD, @HA, @Date)";
                 command.Parameters.AddWithValue("@idAvion", IdAvion);
                 command.Parameters.AddWithValue("@IdAD", IdAD);
@@ -92,7 +92,7 @@ namespace Projet_Air_Atlantique.DAL
                     {
                         if (!ExistingVols.Any(vol => vol.IdProperty == Convert.ToInt32(row["idvol"])))
                         {
-                            Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["date"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
+                            Vol_Controller v = new Vol_Controller(Convert.ToInt32(row["idvol"]), Avion_Model.CheckExistsThenAdd(Convert.ToInt32(row["avion"])), Aeroport_Model.CheckExistsThenAdd(row["adepart"].ToString()), Aeroport_Model.CheckExistsThenAdd(row["aarrivee"].ToString()), row["datedepart"].ToString(), row["heuredepart"].ToString(), row["heurearrivee"].ToString());
                             v.HeaderProperty = GetHeader(v);
                             ExistingVols.Add(v);
                         }
